@@ -80,3 +80,11 @@ h1, h2, h3, h4, h5, h6 {
     width: 10em;
     height: 10em;
 }
+
+#tabs{
+    margin-top: 40px;
+}
+
+.tab-1{
+    background-color: darkcyan;
+}

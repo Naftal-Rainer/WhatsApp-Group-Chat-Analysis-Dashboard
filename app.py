@@ -32,6 +32,7 @@ app.layout = html.Div(className = "content", children=[
     html.Div(
         id='sidebar',
         children=[
+            html.Img(src='/assets/wicon.png', id='wicon'),
         html.I(className="bi bi-whatsapp"),   
         dcc.Upload(
             id='upload-data',
@@ -41,16 +42,24 @@ app.layout = html.Div(className = "content", children=[
             ),
             multiple=True
         ) ]
-        
-            
+           
         ), 
   
     html.Div(
-        id='rightbar'
+        id='rightbar',
+        children=[
+             dcc.Tabs(id='tabs', value='tab-1', children=[
+                dcc.Tab(label='Analytics', value='tab-1', className='tab-1'),
+                dcc.Tab(label='Data Preview', value='tab-2', className='tab-1'),
+                html.Div(id='tabs-example-content-1')
+            ])
+        ]
     ),
     html.Div(
         id='footer'
-    )
+    ),
+    
+    html.Div(id='output-data-upload'),
     
 ])
 
