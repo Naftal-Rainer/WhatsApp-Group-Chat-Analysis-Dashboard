@@ -1,28 +1,33 @@
 import dash
-from dash import Dash, html, dcc
+from dash import Dash, html, dcc 
+import dash_bootstrap_components as dbc
 import plotly.express as px
 import pandas as pd
 
 
 app = Dash(__name__)
 
-colors = {
-    'background': '#111111',
-    # 'text': '#7FDBFF'
-}
 
-
-app.layout = html.Div(children=[
-    html.H1(children='Group Chat Analyser'),
-
-    html.Div(children='''
-        A web application framework for your WhtasApp Group data.
-    '''),
-
-
+app.layout = html.Div(className = "content", children=[
+    
+    html.Div(
+        className="app-header",
+        children=[
+            html.H1('Group Chat Analyser', id='tit'),
+            # html.H6('A web application framework for your WhatsApp Group data.')
+            html.Div('A web application framework for your WhatsApp Group data.', id='descr')
+        ]
+),
+    html.Div(
+        id='sidebar'
+        ),
+    html.Div(
+        id='rightbar'
+    ),
+    html.Div(
+        id='footer'
+    )
 ])
-
-
 
 
 
