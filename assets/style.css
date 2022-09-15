@@ -26,15 +26,47 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     padding: auto;
     margin: auto;
+    display: inline-block;
+    z-index: -1;
+    font-family: 'Lobster', cursive; 
+    font-size: 46px; 
+    font-weight: normal; 
+    line-height: 48px; 
+    margin: 0 0 18px; 
+    text-shadow: 1px 0 0 #fff;
+  /* height: 40px;  */
+  /* width: 0%; */
+  
 }
+
+#tit:hover {
+    /* hardcoded */
+  color: #F2BB05;
+    /* width: 300px;  */
+    transition: width 0.5s;
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1)
+  }
+
+  #descr:hover {
+    /* font-size: 72px; */
+  background: -webkit-linear-gradient(rgb(154, 221, 238), rgb(12, 11, 11));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* color: #F2BB05; */
+    /* width: 300px;  */
+    transition: width 0.5s;
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1)
+  }
 
 #descr{
     font-size: 12px;
+    /* position: absolute; */
     margin: auto;
-    /* padding-top: 3px; */
+    padding: 10px;
+    line-height: 48px;
     font-size: 18px;
     font-style: italic;
-    padding-left: 50%;
+    /* padding-left: 50%; */
     font-weight: 600;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: aquamarine;
@@ -82,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #tabs{
-    margin-top: 40px;
+    /* margin-top: 40px; */
 }
 
 .tab-1{
