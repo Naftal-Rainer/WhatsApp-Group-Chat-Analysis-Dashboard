@@ -4,4 +4,4 @@ This is a web-based dashboard for PCs only that is used to display the analysis 
 
 **Interface**
 
-![Front Demo]('Images\Front_show.jpg)
+<img src="Images\Front_show.jpg" alt='Demo Image' style=" width:960px ; "  >
