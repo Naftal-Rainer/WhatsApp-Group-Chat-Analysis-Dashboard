@@ -10,7 +10,10 @@ import datetime
 import io
 
 
-app = Dash(__name__)
+
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # For Bootstrap Icons...
 app = dash.Dash(
@@ -60,10 +63,13 @@ app.layout = html.Div(className = "content", children=[
     ]),
     
     html.Div(
-        id='footer'
-    ),
-    
-    # html.Div(id='output-data-upload'),
+        id='footer',
+        children=[html.Div( id='love_em',children=[
+                html.H6('made with '),
+                html.H6('  ♥  ', style={'color': 'red'}),
+                html.H6('~ RAINER')
+        ])]
+        )  
     
 ])
 
@@ -76,7 +82,11 @@ def parse_contents(contents, filename, date):
             # Assume that the user uploaded a CSV file
             df = pd.read_csv(
                 io.StringIO(decoded.decode('utf-8')))
+            
         elif 'xls' in filename:
+            # Assume that the user uploaded an excel file
+            df = pd.read_excel(io.BytesIO(decoded))
+        elif 'xlsx' in filename:
             # Assume that the user uploaded an excel file
             df = pd.read_excel(io.BytesIO(decoded))
     except Exception as e:
@@ -88,9 +98,9 @@ def parse_contents(contents, filename, date):
             )
       ])
 
-    return html.Div([
-        html.H5(filename),
-        html.H6(datetime.datetime.fromtimestamp(date)),
+    return html.Div( id='display_table', children=[
+        html.H5(filename, className='meta', id='filename'),
+        html.H6(datetime.datetime.fromtimestamp(date), className='meta', id='dstamp'),
 
         dash_table.DataTable(
             df.to_dict('records'),
@@ -100,21 +110,18 @@ def parse_contents(contents, filename, date):
         html.Hr(),  # horizontal line
 
         # For debugging, display the raw contents provided by the web browser
-        html.Div('Raw Content'),
+        html.Div('Raw Content', style={
+            'color' : 'brown',
+            'font-weight':'bold',
+            'font-size': '20px'
+            }),
         html.Pre(contents[0:200] + '...', style={
             'whiteSpace': 'pre-wrap',
-            'wordBreak': 'break-all'
+            'wordBreak': 'break-all',
+            'color': 'aquamarine'
         })
     ])
 
-
-
-
-# @app.callback(# Output('output-data-upload', 'children'),
-#             Output('tabs-example-content-1', 'children'),
-#               Input('upload-data', 'contents'),
-#               State('upload-data', 'filename'),
-#               State('upload-data', 'last_modified'))
 
 
 @app.callback(

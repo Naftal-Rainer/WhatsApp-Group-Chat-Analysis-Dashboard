@@ -94,7 +94,25 @@ h1, h2, h3, h4, h5, h6 {
     clear: both;
     border-top: 2px solid lightgrey;
     background-color: #2e5f4f;
+    justify-content: center;
 }
+
+
+
+#love_em h6{
+    display: inline;
+    color: white;
+    font-size: 20px;
+}
+
+#love_em{
+    margin: auto;
+    width: 40%;
+    position: relative;
+    padding: 20px;
+}
+
+
 
 #upload-data{
     /* width: '100%', */
@@ -113,10 +131,39 @@ h1, h2, h3, h4, h5, h6 {
     height: 10em;
 }
 
-#tabs{
-    /* margin-top: 40px; */
-}
 
 .tab-1{
     background-color: darkcyan;
 }
+
+#display_table{
+    width: 100%;
+}
+
+.meta{
+    color: aquamarine;
+    font-size: 20px;
+    border: 1px solid brown;
+    background-color: rgb(207, 113, 113);
+    display: inline;
+    padding: 3px;
+    margin: 10px;
+    font-weight: bold;
+}
+
+#dstamp{
+    float: right;
+}
+
+#filename{
+    float: left;
+}
+
+
+
+
+/* #love_em{
+    flex: content;
+    flex-direction: row;
+    flex-flow: row;
+} */
