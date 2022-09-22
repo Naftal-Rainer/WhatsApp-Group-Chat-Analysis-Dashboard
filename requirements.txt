@@ -1,0 +1,11 @@
+regex
+pandas
+matplotlib
+numpy
+seaborn
+datetime
+emoji
+wordcloud
+heatmapz
+nltk
+plotly
