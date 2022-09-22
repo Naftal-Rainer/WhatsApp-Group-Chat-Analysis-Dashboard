@@ -40,3 +40,22 @@ The steps are as follows:
 
 
 The required python libraries for the extraction of useful information from raw whatsapp data data is listed in the [requirements.txt file](requirements.txt)
+
+<a id='wrangling'></a>
+## Data Wrangling
+
+The data to be cleansed is stored as `extractedData.csv`. 
+
+#### Data Understanding
+
+To understand this data, I seek to answer the following questions:
+    
+> - How many active participants are in the group?
+
+> - How many texts and media have been sent to the group?
+
+> - What are the commonly used words in the group chat.
+
+> - What are the emotions attached to every user?
+
+> - What are the trends in chatting in the group?
