@@ -22,6 +22,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #tit {
+    color: #F2BB05;
     text-align: center;
     width: 100%;
     padding: auto;
@@ -41,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #tit:hover {
     /* hardcoded */
-  color: #F2BB05;
+  color: red;
     /* width: 300px;  */
     transition: width 0.5s;
   transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1)
