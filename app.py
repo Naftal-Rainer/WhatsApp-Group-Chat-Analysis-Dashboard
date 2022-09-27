@@ -3,7 +3,11 @@ from dash import Dash, html, dcc , dash_table
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
 import plotly.express as px
+import plotly.graph_objs as go
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud , STOPWORDS ,ImageColorGenerator 
 
 import base64
 import datetime
@@ -56,7 +60,7 @@ app.layout = html.Div(className = "content", children=[
         id='rightbar',
         children=[
              dcc.Tabs(id='tabs', value='tab-1', children=[
-                dcc.Tab(label='Analytics', value='tab-1', className='tab-1'),
+                dcc.Tab(label='Analytics', value='analytics', className='tab-1'),
                 dcc.Tab(label='Data Preview', value='preview', className='tab-1')
              ]),
     html.Div(id='tabs-example-content-1')
@@ -104,7 +108,9 @@ def parse_contents(contents, filename, date):
 
         dash_table.DataTable(
             df.to_dict('records'),
-            [{'name': i, 'id': i} for i in df.columns]
+            columns = [{'name': i, 'id': i} for i in df.columns],
+            editable=True,
+            row_deletable=True
         ),
 
         html.Hr(),  # horizontal line
@@ -144,6 +150,39 @@ def update_output(tab, list_of_contents, list_of_names, list_of_dates):
                 'Upload A File',
                 color='danger'
             )
+    elif tab == 'analytics':
+        if list_of_contents:
+            contents = list_of_contents[0]
+            filename = list_of_names[0]
+            dates = list_of_dates[0]
+            df = parse_contents(contents, filename, dates)
+            # df = df.set_index(df.columns[0])
+            text = " ".join([review for review in df['Message'] if len(review) > 2 and review != '<Media omitted>']) 
+            wordcloud =WordCloud(stopwords=STOPWORDS, background_color="white").generate(text) 
+            # plt.title('Most used words.')
+            wordcloud.to_file('assets/words.png')
+            weekDay = { 0 : 'Monday', 1 : 'Tuesday', 2 : 'Wednesday', 3 : 'Thursday', 4 : 'Friday', 5 :'Saturday', 6 : 'Sunday' } 
+            df['Days'] = df.Date.dt.day_of_week.map(weekDay).astype('category')
+            df['LetterCount'] = df['Message'].apply(lambda x : len(x))
+            df['WordCount'] = df['Message'].apply(lambda x : len(x.split(' ')))
+            total_messages = df.shape[0] 
+            media_messages = df[df['Message'] == '<Media omitted>'].shape[0] 
+            links =np.sum(df.Link)
+            
+          
+            children = [
+                html.Img(src='/assets/words.png', id='words')               
+            ]
+            return children
+
+# ### Display the generated image:
+# plt.figure( figsize=(10,5)) 
+# plt.imshow(wordcloud, interpolation='bilinear') 
+# plt.axis("off") 
+# plt.show()
+
+        
+        
 
 # def render_content(tab):
 #     if tab == 'preview':
